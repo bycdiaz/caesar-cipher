@@ -1,28 +1,28 @@
 def caesar_cipher(string,shift)
-  alpha_lower = ('a'..'z').to_a
-  alpha_upper = ('A'..'Z').to_a
-  full_alpha = alpha_lower + alpha_upper
+  alpha_lowercase = ('a'..'z').to_a
+  alpha_uppercase = ('A'..'Z').to_a
+  full_alphabet = alpha_lowercase + alpha_uppercase
 
   highest_index = []
 
   string.downcase.split("").each { |char|
-    highest_index << (alpha_lower.index(char))
+    highest_index << (alpha_lowercase.index(char))
   }
   highest_index = highest_index.compact.max
   
-  while (highest_index + shift) >= alpha_lower.length
-    alpha_lower += alpha_lower
-    alpha_upper += alpha_upper
+  while (highest_index + shift) >= alpha_lowercase.length
+    alpha_lowercase += alpha_lowercase
+    alpha_uppercase += alpha_uppercase
   end
 
   result = []
   
   string.split("").each { |char|
-    if full_alpha.include? char
+    if full_alphabet.include? char
       if char == char.downcase
-        result << alpha_lower[alpha_lower.index(char) + shift]
+        result << alpha_lowercase[alpha_lowercase.index(char) + shift]
       else
-        result << alpha_upper[alpha_upper.index(char) + shift]
+        result << alpha_uppercase[alpha_uppercase.index(char) + shift]
       end
     else
       result << char
